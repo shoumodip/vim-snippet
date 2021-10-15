@@ -1,0 +1,5 @@
+public class ${:expand("%:t")[0:-6]} {
+    public static void main(String args[]) {
+        ${~}
+    }
+}

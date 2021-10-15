@@ -1,0 +1,67 @@
+*snippet*  *snippet.txt*  Lightweight snippets system
+
+Author:  Shoumodip Kar <shoumodipkar@gmail.com>
+License: MIT
+
+===============================================================================
+OVERVIEW                                                     *snippet-overview*
+
+This plugin implements a very minimal snippet system. In case you are not
+familiar with snippets, they are text templates you can expand by hitting
+'<Tab>'. They also contain markers which you can jump your cursor to. Most
+snippet systems (including this one) allow for arbritary code evaluation in
+the template at expansion time.
+
+===============================================================================
+CODE                                                             *snippet-code*
+
+- `${:VIMSCRIPT}` evaluates `VIMSCRIPT` as VimL code
+
+Examples: >
+    ${:expand("%:t")[0:-6]}
+    ${:version}
+<
+
+- `${!SHELL}` evaluates `SHELL` as shell code
+
+Examples: >
+    ${!date '+%Y-%m-%d'}
+    ${!uname -r}
+<
+
+===============================================================================
+MARKERS                                                       *snippet-markers*
+
+`${~TEXT}` defines a cursor marker which you can jump to, where `TEXT` can be:
+- empty  (`${~}`)
+- string (`${~local api = vim.api}`)
+- code   (`${~:expand("%:t")}` or `${~!date}`)
+
+===============================================================================
+LOCATION                                                   *g:snippet#location*
+
+Default: `~/.vim/snippets` (`~/.config/nvim/snippets` for Neovim)
+
+
+- `g:snippet#location/SNIP` for a snippet `SNIP` active in all
+  filetypes.
+
+- `g:snippet#location/TYPE/SNIP` for a snippet `SNIP` active in
+  `TYPE` filetype only.
+
+===============================================================================
+CREATE                                                         *snippet_create*
+
+Of course, you can straight up open a file in the snippets directory and it
+will be available for use on saving. However there exists a convenience
+command for doing exactly that.
+
+`Snippet {FILETYPE}`                                                 *:Snippet*
+
+- `Snippet` Create a global snippet
+- `Snippet TYPE` Create a snippet for filetype `TYPE`
+
+Examples:
+- `Snippet &filetype` Create a snippet for the current buffer filetype
+- `Snippet "java"` Create a Java snippet to write the ENORMOUS boilerplates.
+- `Snippet` Create a global snippet
