@@ -92,8 +92,8 @@ function! snippet#edit()
         silent! call mkdir(fnamemodify(path, ":h"), "p")
         execute g:snippet#edit_cmd . " " . path
 
-        if exists("a:1")
-            let &l:filetype = a:1
+        if filetype != ""
+            let &l:filetype = filetype
         endif
     endif
 endfunction
