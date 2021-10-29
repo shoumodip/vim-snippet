@@ -56,12 +56,10 @@ Of course, you can straight up open a file in the snippets directory and it
 will be available for use on saving. However there exists a convenience
 command for doing exactly that.
 
-`Snippet {FILETYPE}`                                                 *:Snippet*
+`Snippet`                                                            *:Snippet*
 
-- `Snippet` Create a global snippet
-- `Snippet TYPE` Create a snippet for filetype `TYPE`
-
-Examples:
-- `Snippet &filetype` Create a snippet for the current buffer filetype
-- `Snippet "java"` Create a Java snippet to write the ENORMOUS boilerplates.
-- `Snippet` Create a global snippet
+It will prompt the user for a filetype to store the snippet in, defaulting to
+the filetype of the current buffer. If a filetype is provided, it will create
+a local snippet. If an empty string is provided, it will create a global
+snippet. After that it will query the snippet name and open the edit buffer
+in a split

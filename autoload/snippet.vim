@@ -78,14 +78,15 @@ function! snippet#expand()
 endfunction
 
 " Create a new snippet
-function! snippet#edit(...)
+function! snippet#edit()
+    let filetype = input("Filetype: ", &filetype, "filetype")
     let path = input("Edit: ")
 
     if len(path) > 0
-        if exists("a:1")
-            let path = g:snippet#location . "/" . a:1 . "/" . path
-        else
+        if filetype == ""
             let path = g:snippet#location . "/" . path
+        else
+            let path = g:snippet#location . "/" . filetype . "/" . path
         endif
 
         silent! call mkdir(fnamemodify(path, ":h"), "p")

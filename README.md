@@ -50,8 +50,6 @@ $ cp -rf examples/* ~/.config/nvim/snippets/
 ## Usage
 - Use `<tab>` to expand snippets
 - Use `<tab>` to jump to cursor markers
-- Use `Snippet` to create global snippets
-- Use `Snippet &filetype` to create a snippet only for the current filetype
-- Use `Snippet "rust"` to create a snippet only for rust
+- Use `Snippet` to create snippets
 - See the snippets in `examples/` for understanding the snippet format
 - See `:h snippet.txt`
