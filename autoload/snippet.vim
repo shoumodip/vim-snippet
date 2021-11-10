@@ -56,13 +56,16 @@ function! snippet#expand()
     let result = ""
 
     if filereadable(snippet)
+        let indent = repeat(" ", indent("."))
         let snippet = readfile(snippet)
         let snippet[0] = repeat("\<bs>", strlen(word)) . snippet[0]
 
         for i in range(len(snippet))
-            let snippet[i] = substitute(snippet[i], '\${\(\~\?\)\([^}]*\)}',
+            let snippet[i] = indent . substitute(snippet[i], '\${\(\~\?\)\([^}]*\)}',
                         \ '\=snippet#eval(submatch(2), submatch(1))', "g")
         endfor
+
+        let snippet[0] = snippet[0][len(indent):]
 
         let result  = "\<c-o>:set paste\<cr>" . join(snippet, "\n") . "\<c-o>:set nopaste\<cr>"
 
